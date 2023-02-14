@@ -55,3 +55,15 @@ fun ImageCard(
         }
     }
 }
+
+/*setContent {
+    val painter = painterResource(id = R.drawable.kermit)
+    val title = "Smart style of the kermit"
+    val description = "Smart style of the kermit"
+    Box(modifier = Modifier
+        .fillMaxWidth(0.5f)
+        .padding(16.dp)) {
+        ImageCard(painter = painter, contentDescription = description, title = title)
+    }
+
+}*/
