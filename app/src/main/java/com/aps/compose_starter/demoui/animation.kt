@@ -3,6 +3,7 @@ package com.aps.compose_starter.demoui
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -70,3 +71,11 @@ fun CircularProgressBar(percentage:Float,
     }
 }
 
+//setContent {
+//    Box(
+//        contentAlignment = Alignment.Center,
+//        modifier = Modifier.fillMaxSize()
+//    ){
+//        CircularProgressBar(percentage = 0.8f, number = 100)
+//    }
+//}
