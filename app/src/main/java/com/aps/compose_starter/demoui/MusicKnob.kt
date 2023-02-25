@@ -139,8 +139,8 @@ setContent {
                 volume = it
             }
             Spacer(modifier = Modifier.width(20.dp))
-            com.aps.compose_starter.VolumeBar(modifier = Modifier.fillMaxSize()
-                .height(10.dp),
+            com.aps.compose_starter.VolumeBar(modifier = Modifier.fillMaxWidth()
+                .height(100.dp),
                 activeBars = (barCount * volume).roundToInt(),
                 barCount = barCount)
         }

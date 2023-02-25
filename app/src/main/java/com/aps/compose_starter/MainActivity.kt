@@ -63,6 +63,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
 
+
     }
 }
 
@@ -123,9 +124,9 @@ data class Message(val author: String, val body: String)
 @Composable
 fun MusicKnob(
     modifier: Modifier = Modifier,
-    limitingAngle : Float = 25f,
-    onValueChange : (Float) -> Unit
-){
+    limitingAngle: Float = 25f,
+    onValueChange: (Float) -> Unit
+) {
     var rotation by remember {
         mutableStateOf(limitingAngle)
     }
@@ -145,7 +146,7 @@ fun MusicKnob(
         mutableStateOf(0f)
     }
 
-    Image(painter = painterResource(id =com.aps.compose_starter.R.drawable.music_knob),
+    Image(painter = painterResource(id = R.drawable.music_knob),
         contentDescription = "Music Knob",
         modifier = modifier
             .fillMaxSize()
@@ -185,9 +186,9 @@ fun MusicKnob(
 @Composable
 fun VolumeBar(
     modifier: Modifier = Modifier,
-    activeBars : Int = 0,
+    activeBars: Int = 0,
     barCount: Int = 10
-){
+) {
     BoxWithConstraints(
         contentAlignment = Alignment.Center,
         modifier = modifier
@@ -195,12 +196,12 @@ fun VolumeBar(
         val barWith = remember {
             constraints.maxWidth / (2f * barCount)
         }
-        Canvas(modifier = modifier){
-            for (i in 0 until  barCount){
+        Canvas(modifier = modifier) {
+            for (i in 0 until barCount) {
                 drawRoundRect(
-                    color = if(i in 0..activeBars) Color.Green else Color.Gray,
-                    topLeft = Offset(i * barWith *2f + barWith/2f,0f),
-                    size = Size(barWith,constraints.maxHeight.toFloat()),
+                    color = if (i in 0..activeBars) Color.Green else Color.Gray,
+                    topLeft = Offset(i * barWith * 2f + barWith / 2f, 0f),
+                    size = Size(barWith, constraints.maxHeight.toFloat()),
                     cornerRadius = CornerRadius(0f)
                 )
             }
