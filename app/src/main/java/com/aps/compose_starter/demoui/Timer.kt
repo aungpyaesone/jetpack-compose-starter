@@ -2,8 +2,11 @@ package com.aps.compose_starter.demoui
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -52,11 +55,11 @@ fun Timer(
     var isTimerRunning by remember {
         mutableStateOf(false)
     }
-    
+
     LaunchedEffect(key1 = currentTime, key2 = isTimerRunning){
         if(currentTime > 0 && isTimerRunning){
             delay(100L)
-            currentTime = -100L
+            currentTime = 100L
             value = currentTime / totalTime.toFloat()
         }
     }
@@ -129,3 +132,20 @@ fun Timer(
         }
     }
 }
+
+//setContent {
+//    Surface(
+//        color = Color(0xff101010),
+//        modifier = Modifier.fillMaxSize()
+//    ) {
+//        Box(contentAlignment = Alignment.Center) {
+//            Timer(
+//                totalTime = 100L * 1000L,
+//                handleColor = Color.Green,
+//                inactiveColor = Color.DarkGray,
+//                activeColor = Color(0xff37b900),
+//                modifier = Modifier.size(200.dp)
+//            )
+//        }
+//    }
+//}

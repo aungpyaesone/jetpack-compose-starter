@@ -62,20 +62,7 @@ import kotlin.random.Random
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent { 
-            Surface(color = Color(0xff101010),
-            modifier = Modifier.fillMaxSize()) {
-Box(contentAlignment = Alignment.Center){
-    Timer(
-        totalTime = 100L * 1000L,
-        handleColor = Color.Green,
-        inactiveColor = Color.DarkGray,
-        activeColor = Color(0xff37b900),
-        modifier = Modifier.size(200.dp)
-    )
-}
-            }
-        }
+
     }
 }
 
