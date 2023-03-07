@@ -53,6 +53,7 @@ import androidx.compose.ui.unit.sp
 import com.aps.compose_starter.demoui.CircularProgressBar
 import com.aps.compose_starter.demoui.DropDown
 import com.aps.compose_starter.demoui.Timer
+import com.aps.compose_starter.jetpacknav.Navigation
 import com.aps.compose_starter.ui.theme.Compose_starterTheme
 import kotlinx.coroutines.launch
 import kotlin.math.PI
@@ -63,17 +64,9 @@ import kotlin.random.Random
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent { 
-            Surface(color = Color(0xff101010),
-                modifier = Modifier.fillMaxSize()
-            ) {
-                DropDown(text = "Hello World", modifier = Modifier.padding(15.dp)) {
-                    Text(text = "This is now revealed!", modifier = Modifier.fillMaxWidth()
-                        .height(100.dp)
-                        .background(Color.Green))
-                }
-            }
-        }
+      setContent {
+          Navigation()
+      }
     }
 }
 
