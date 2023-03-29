@@ -2,6 +2,7 @@ package com.aps.compose_starter
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.MotionEvent
@@ -60,6 +61,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -69,6 +71,8 @@ import com.aps.compose_starter.ui.theme.Compose_starterTheme
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlin.math.PI
 import kotlin.math.atan2
@@ -76,13 +80,31 @@ import kotlin.math.roundToInt
 import kotlin.random.Random
 
 @ExperimentalPermissionsApi
-class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity(),DeepLinkHandler by DeepLinkHandlerImpl(),
+AnalyticLogger by AnalyticsLoggerImpl(){
+
+    private lateinit var connectivityObserver: ConnectivityObserver
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        connectivityObserver = ConnectivityHelper(applicationContext)
+        connectivityObserver.observe().onEach {
+            println("#status is $it")
+        }.launchIn(lifecycleScope)
+        registerLifecycleOwner(this)
         setContent {
+            val status by connectivityObserver.observe().collectAsState(initial = ConnectivityObserver.Status.Unavailable)
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
+                Text(text = "Network status : $status")
+            }
             // MultiSelectLazyColumn()
-            RequestPermission()
+         //   RequestPermission()
         }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+       // handleDeepLink(this,intent)
     }
 }
 
